@@ -1,0 +1,779 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<title>[YOUR BRAND] — A custom website you can edit by talking</title>
+<meta name="description" content="A custom-designed website you can change by talking to AI on your own laptop. You own the code, the domain, the hosting. No platform lock-in. No monthly fees." />
+
+<link rel="preconnect" href="https://fonts.googleapis.com" />
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+<link href="https://fonts.googleapis.com/css2?family=Fraunces:opsz,wght@9..144,400;9..144,500;9..144,600;9..144,700&family=Inter:wght@400;500;600;700&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet" />
+
+<style>
+  :root {
+    --paper: #FAF6EF;
+    --paper-warm: #F2EBDF;
+    --ink: #1A1814;
+    --ink-soft: #4A4640;
+    --ink-muted: #8A847B;
+    --line: #E5DDD0;
+    --clay: #C8553D;
+    --clay-deep: #A3422F;
+    --ochre: #D9A441;
+    --leaf: #4A6B3A;
+  }
+
+  * { box-sizing: border-box; margin: 0; padding: 0; }
+  html { scroll-behavior: smooth; }
+  body {
+    font-family: 'Inter', system-ui, sans-serif;
+    background: var(--paper);
+    color: var(--ink);
+    line-height: 1.6;
+    -webkit-font-smoothing: antialiased;
+  }
+
+  .container { max-width: 1120px; margin: 0 auto; padding: 0 24px; }
+  .narrow { max-width: 820px; margin: 0 auto; padding: 0 24px; }
+
+  /* Headings — editorial serif */
+  h1, h2, h3, h4 {
+    font-family: 'Fraunces', Georgia, serif;
+    font-weight: 500;
+    letter-spacing: -0.02em;
+    line-height: 1.1;
+    color: var(--ink);
+  }
+  h1 { font-size: clamp(2.6rem, 5.5vw, 4.6rem); font-weight: 500; }
+  h2 { font-size: clamp(2rem, 3.8vw, 3rem); }
+  h3 { font-size: 1.4rem; line-height: 1.3; }
+
+  p { color: var(--ink-soft); }
+  a { color: inherit; text-decoration: none; }
+
+  .accent { color: var(--clay); font-style: italic; }
+  .eyebrow {
+    font-family: 'Inter', sans-serif;
+    font-size: 0.78rem;
+    font-weight: 600;
+    text-transform: uppercase;
+    letter-spacing: 0.14em;
+    color: var(--clay);
+  }
+
+  /* Nav */
+  nav {
+    position: sticky; top: 0; z-index: 50;
+    background: rgba(250, 246, 239, 0.85);
+    backdrop-filter: saturate(180%) blur(12px);
+    border-bottom: 1px solid var(--line);
+  }
+  .nav-inner {
+    display: flex; align-items: center; justify-content: space-between;
+    padding: 18px 24px;
+    max-width: 1120px; margin: 0 auto;
+  }
+  .logo {
+    font-family: 'Fraunces', serif;
+    font-weight: 600;
+    font-size: 1.25rem;
+    letter-spacing: -0.01em;
+  }
+  .logo span { color: var(--clay); }
+  .nav-links { display: flex; gap: 32px; align-items: center; }
+  .nav-links a { font-size: 0.92rem; color: var(--ink-soft); transition: color 0.2s; }
+  .nav-links a:hover { color: var(--ink); }
+  .nav-cta {
+    background: var(--ink); color: var(--paper) !important;
+    padding: 10px 18px; border-radius: 999px;
+    font-size: 0.9rem; font-weight: 500;
+    transition: background 0.2s;
+  }
+  .nav-cta:hover { background: var(--clay) !important; }
+  @media (max-width: 720px) { .nav-links a:not(.nav-cta) { display: none; } }
+
+  /* Buttons */
+  .btn {
+    display: inline-flex; align-items: center; gap: 10px;
+    padding: 16px 28px; border-radius: 999px;
+    font-weight: 500; font-size: 1rem;
+    transition: all 0.2s; cursor: pointer; border: none;
+    font-family: 'Inter', sans-serif;
+  }
+  .btn-primary {
+    background: var(--ink); color: var(--paper);
+  }
+  .btn-primary:hover { background: var(--clay); transform: translateY(-1px); }
+  .btn-secondary {
+    background: transparent; color: var(--ink);
+    border: 1px solid var(--ink);
+  }
+  .btn-secondary:hover { background: var(--ink); color: var(--paper); }
+  .btn-arrow { font-size: 1.1em; line-height: 1; }
+
+  /* HERO */
+  .hero {
+    padding: 90px 0 100px;
+    text-align: center;
+    position: relative;
+    overflow: hidden;
+  }
+  .hero::before {
+    content: '';
+    position: absolute; inset: 0;
+    background-image:
+      radial-gradient(circle at 20% 20%, rgba(200,85,61,0.06), transparent 40%),
+      radial-gradient(circle at 80% 30%, rgba(217,164,65,0.05), transparent 50%);
+    pointer-events: none;
+  }
+  .hero-content { position: relative; z-index: 1; }
+  .hero-badge {
+    display: inline-flex; align-items: center; gap: 8px;
+    padding: 8px 16px; border-radius: 999px;
+    background: var(--paper-warm); border: 1px solid var(--line);
+    font-size: 0.82rem; color: var(--ink-soft);
+    margin-bottom: 28px;
+  }
+  .hero-badge .dot { width: 6px; height: 6px; border-radius: 999px; background: var(--leaf); display: inline-block; }
+  .hero h1 { max-width: 900px; margin: 0 auto 24px; }
+  .hero h1 .underline-art {
+    position: relative; display: inline-block;
+    color: var(--clay); font-style: italic;
+  }
+  .hero h1 .underline-art::after {
+    content: '';
+    position: absolute; left: 0; right: 0; bottom: -2px;
+    height: 8px;
+    background: url("data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 200 8' preserveAspectRatio='none'><path d='M0,5 Q50,0 100,4 T200,3' stroke='%23C8553D' stroke-width='2' fill='none' stroke-linecap='round'/></svg>") no-repeat center / 100% 100%;
+  }
+  .hero-sub {
+    font-size: 1.2rem; max-width: 620px; margin: 0 auto 40px;
+    color: var(--ink-soft);
+  }
+  .hero-ctas { display: flex; gap: 14px; justify-content: center; flex-wrap: wrap; margin-bottom: 64px; }
+  .hero-meta {
+    display: flex; gap: 28px; justify-content: center; flex-wrap: wrap;
+    font-size: 0.88rem; color: var(--ink-muted);
+  }
+  .hero-meta span { display: inline-flex; align-items: center; gap: 8px; }
+  .hero-meta .check { color: var(--leaf); font-weight: 600; }
+
+  /* Chat mockup in hero */
+  .chat-demo {
+    max-width: 720px; margin: 80px auto 0;
+    background: #FFFFFF; border: 1px solid var(--line);
+    border-radius: 20px; padding: 28px;
+    box-shadow: 0 24px 60px -20px rgba(26,24,20,0.15), 0 4px 12px -4px rgba(26,24,20,0.06);
+    text-align: left;
+  }
+  .chat-header {
+    display: flex; align-items: center; gap: 8px;
+    padding-bottom: 18px; border-bottom: 1px solid var(--line);
+    margin-bottom: 20px;
+  }
+  .chat-dot { width: 11px; height: 11px; border-radius: 999px; }
+  .chat-dot.r { background: #FF5F57; }
+  .chat-dot.y { background: #FEBC2E; }
+  .chat-dot.g { background: #28C840; }
+  .chat-header-label {
+    margin-left: 12px; font-family: 'JetBrains Mono', monospace;
+    font-size: 0.78rem; color: var(--ink-muted);
+  }
+  .chat-msg { padding: 12px 0; font-size: 0.98rem; }
+  .chat-msg .who {
+    font-family: 'JetBrains Mono', monospace;
+    font-size: 0.74rem; color: var(--ink-muted);
+    text-transform: uppercase; letter-spacing: 0.1em;
+    margin-bottom: 6px; display: block;
+  }
+  .chat-msg.you .text {
+    background: var(--paper-warm); padding: 14px 18px;
+    border-radius: 14px 14px 14px 4px; display: inline-block; max-width: 90%;
+    color: var(--ink);
+  }
+  .chat-msg.ai .who { color: var(--clay); }
+  .chat-msg.ai .text {
+    color: var(--ink-soft); padding: 6px 0;
+  }
+  .chat-msg.ai .action {
+    font-family: 'JetBrains Mono', monospace; font-size: 0.85rem;
+    color: var(--leaf); display: block; margin-top: 8px;
+  }
+
+  /* Section primitives */
+  section { padding: 100px 0; }
+  .section-head { text-align: center; max-width: 720px; margin: 0 auto 64px; }
+  .section-head .eyebrow { margin-bottom: 16px; display: block; }
+  .section-head h2 { margin-bottom: 16px; }
+  .section-head p { font-size: 1.1rem; }
+
+  /* PROBLEM section */
+  .problem { background: var(--paper-warm); }
+  .problem-grid {
+    display: grid; grid-template-columns: repeat(3, 1fr); gap: 24px;
+  }
+  .problem-card {
+    background: var(--paper); border: 1px solid var(--line);
+    border-radius: 16px; padding: 32px;
+  }
+  .problem-card .icon {
+    font-family: 'Fraunces', serif; font-size: 2rem; color: var(--clay);
+    font-style: italic; margin-bottom: 14px; display: block;
+  }
+  .problem-card h3 { font-size: 1.15rem; margin-bottom: 10px; font-weight: 500; }
+  .problem-card p { font-size: 0.95rem; }
+  @media (max-width: 820px) { .problem-grid { grid-template-columns: 1fr; } }
+
+  /* PILLARS */
+  .pillars-grid {
+    display: grid; grid-template-columns: 1fr 1fr; gap: 32px;
+    margin-top: 64px;
+  }
+  .pillar {
+    padding: 36px; border-radius: 20px;
+    border: 1px solid var(--line);
+    background: var(--paper);
+  }
+  .pillar.feature { background: var(--ink); color: var(--paper); border-color: var(--ink); }
+  .pillar.feature h3 { color: var(--paper); }
+  .pillar.feature p { color: rgba(250,246,239,0.75); }
+  .pillar-num {
+    font-family: 'Fraunces', serif; font-size: 0.95rem;
+    color: var(--clay); font-style: italic;
+    margin-bottom: 16px; display: block;
+  }
+  .pillar.feature .pillar-num { color: var(--ochre); }
+  .pillar h3 { font-size: 1.5rem; margin-bottom: 12px; font-weight: 500; }
+  .pillar p { font-size: 1rem; line-height: 1.65; }
+  @media (max-width: 820px) { .pillars-grid { grid-template-columns: 1fr; } }
+
+  /* HOW IT WORKS - timeline */
+  .timeline {
+    max-width: 760px; margin: 0 auto;
+    position: relative;
+  }
+  .timeline::before {
+    content: ''; position: absolute;
+    left: 24px; top: 12px; bottom: 12px;
+    width: 1px; background: var(--line);
+  }
+  .step {
+    display: grid; grid-template-columns: 48px 1fr; gap: 24px;
+    padding: 24px 0;
+    position: relative;
+  }
+  .step-dot {
+    width: 48px; height: 48px; border-radius: 999px;
+    background: var(--paper); border: 1px solid var(--line);
+    display: flex; align-items: center; justify-content: center;
+    font-family: 'Fraunces', serif; font-weight: 600; font-size: 1.1rem;
+    color: var(--clay); position: relative; z-index: 1;
+  }
+  .step h3 { font-size: 1.25rem; margin-bottom: 6px; font-weight: 500; }
+  .step .day { font-family: 'JetBrains Mono', monospace; font-size: 0.78rem; color: var(--ink-muted); text-transform: uppercase; letter-spacing: 0.1em; margin-bottom: 6px; display: block; }
+  .step p { font-size: 0.98rem; }
+
+  /* COMPARISON */
+  .compare { background: var(--paper-warm); }
+  .compare-table {
+    background: var(--paper); border: 1px solid var(--line);
+    border-radius: 20px; overflow: hidden;
+    max-width: 920px; margin: 0 auto;
+  }
+  .compare-row {
+    display: grid; grid-template-columns: 1.6fr 1fr 1fr 1fr;
+    border-bottom: 1px solid var(--line);
+  }
+  .compare-row:last-child { border-bottom: none; }
+  .compare-row.head {
+    background: var(--paper-warm);
+    font-family: 'Fraunces', serif; font-size: 0.95rem;
+    color: var(--ink);
+  }
+  .compare-row.head .ours { color: var(--clay); font-weight: 600; }
+  .compare-cell {
+    padding: 20px 18px;
+    font-size: 0.92rem;
+    color: var(--ink-soft);
+    border-right: 1px solid var(--line);
+    display: flex; align-items: center;
+  }
+  .compare-cell:last-child { border-right: none; }
+  .compare-cell.label { color: var(--ink); font-weight: 500; }
+  .compare-cell .yes { color: var(--leaf); font-weight: 600; }
+  .compare-cell .no { color: var(--ink-muted); }
+  .compare-cell .meh { color: var(--ochre); }
+  @media (max-width: 820px) {
+    .compare-row { grid-template-columns: 1fr; }
+    .compare-cell { border-right: none; border-bottom: 1px solid var(--line); }
+    .compare-cell.label { background: var(--paper-warm); font-weight: 600; padding-top: 14px; }
+    .compare-row.head { display: none; }
+    .compare-cell::before { content: attr(data-col) ' — '; color: var(--ink-muted); margin-right: 6px; font-size: 0.8rem; }
+    .compare-cell.label::before { content: none; }
+  }
+
+  /* PRICING */
+  .pricing-grid {
+    display: grid; grid-template-columns: 1.2fr 1fr; gap: 24px;
+    max-width: 920px; margin: 0 auto;
+  }
+  .price-card {
+    padding: 40px; border-radius: 20px;
+    border: 1px solid var(--line);
+    background: var(--paper);
+    display: flex; flex-direction: column;
+  }
+  .price-card.featured {
+    background: var(--ink); color: var(--paper); border-color: var(--ink);
+    position: relative;
+  }
+  .price-card.featured .price-tag,
+  .price-card.featured h3,
+  .price-card.featured .price-amount { color: var(--paper); }
+  .price-card.featured p,
+  .price-card.featured li { color: rgba(250,246,239,0.78); }
+  .price-card.featured li::before { color: var(--ochre); }
+  .price-card .badge {
+    position: absolute; top: -12px; right: 28px;
+    background: var(--ochre); color: var(--ink);
+    font-size: 0.72rem; font-weight: 700; text-transform: uppercase;
+    letter-spacing: 0.1em; padding: 6px 12px; border-radius: 999px;
+  }
+  .price-tag {
+    font-family: 'JetBrains Mono', monospace;
+    font-size: 0.78rem; text-transform: uppercase;
+    letter-spacing: 0.1em; color: var(--clay);
+    margin-bottom: 12px;
+  }
+  .price-card h3 { font-size: 1.6rem; font-weight: 500; margin-bottom: 8px; }
+  .price-card .price-amount {
+    font-family: 'Fraunces', serif; font-size: 3rem; font-weight: 500;
+    margin: 18px 0 4px;
+  }
+  .price-card .price-amount small {
+    font-size: 1rem; color: var(--ink-muted); font-weight: 400;
+  }
+  .price-card.featured .price-amount small { color: rgba(250,246,239,0.6); }
+  .price-card .price-note {
+    font-size: 0.92rem; margin-bottom: 24px;
+  }
+  .price-card ul {
+    list-style: none; margin: 24px 0; flex: 1;
+  }
+  .price-card li {
+    padding: 10px 0 10px 28px; position: relative;
+    font-size: 0.96rem; color: var(--ink-soft);
+    border-bottom: 1px solid var(--line);
+  }
+  .price-card.featured li { border-bottom-color: rgba(250,246,239,0.12); }
+  .price-card li:last-child { border-bottom: none; }
+  .price-card li::before {
+    content: '✓'; position: absolute; left: 0; top: 10px;
+    color: var(--leaf); font-weight: 700;
+  }
+  .price-card .btn { width: 100%; justify-content: center; }
+  .price-card.featured .btn-primary { background: var(--ochre); color: var(--ink); }
+  .price-card.featured .btn-primary:hover { background: var(--paper); }
+  @media (max-width: 820px) { .pricing-grid { grid-template-columns: 1fr; } }
+
+  /* FAQ */
+  .faq { max-width: 760px; margin: 0 auto; }
+  details {
+    border-bottom: 1px solid var(--line);
+    padding: 24px 0;
+  }
+  summary {
+    list-style: none; cursor: pointer;
+    font-family: 'Fraunces', serif; font-size: 1.25rem;
+    font-weight: 500;
+    display: flex; justify-content: space-between; align-items: center;
+    color: var(--ink);
+  }
+  summary::-webkit-details-marker { display: none; }
+  summary::after {
+    content: '+'; font-family: 'Inter', sans-serif;
+    font-size: 1.6rem; color: var(--clay); font-weight: 300;
+    transition: transform 0.2s;
+  }
+  details[open] summary::after { content: '−'; }
+  details p {
+    margin-top: 14px; font-size: 1rem; line-height: 1.7;
+  }
+
+  /* CTA banner */
+  .cta-banner {
+    background: var(--ink); color: var(--paper);
+    text-align: center; padding: 100px 0;
+    position: relative; overflow: hidden;
+  }
+  .cta-banner::before {
+    content: '';
+    position: absolute; inset: 0;
+    background:
+      radial-gradient(circle at 30% 50%, rgba(200,85,61,0.18), transparent 50%),
+      radial-gradient(circle at 70% 50%, rgba(217,164,65,0.12), transparent 50%);
+    pointer-events: none;
+  }
+  .cta-banner-inner { position: relative; z-index: 1; }
+  .cta-banner h2 { color: var(--paper); margin-bottom: 16px; }
+  .cta-banner h2 em { color: var(--ochre); font-style: italic; }
+  .cta-banner p { color: rgba(250,246,239,0.78); font-size: 1.15rem; max-width: 540px; margin: 0 auto 32px; }
+  .cta-banner .btn-primary { background: var(--ochre); color: var(--ink); }
+  .cta-banner .btn-primary:hover { background: var(--paper); }
+
+  /* Footer */
+  footer {
+    padding: 48px 0;
+    border-top: 1px solid var(--line);
+    font-size: 0.88rem; color: var(--ink-muted);
+  }
+  .footer-inner {
+    display: flex; justify-content: space-between; align-items: center;
+    flex-wrap: wrap; gap: 16px;
+  }
+</style>
+</head>
+<body>
+
+<nav>
+  <div class="nav-inner">
+    <a href="#" class="logo">your<span>brand</span></a>
+    <div class="nav-links">
+      <a href="#how">How it works</a>
+      <a href="#pricing">Pricing</a>
+      <a href="#faq">FAQ</a>
+      <a href="#book" class="nav-cta">Book a call</a>
+    </div>
+  </div>
+</nav>
+
+<!-- HERO -->
+<header class="hero">
+  <div class="container hero-content">
+    <div class="hero-badge"><span class="dot"></span> Now taking 4 client builds for June</div>
+    <h1>
+      A website you can change<br/>
+      by <span class="underline-art">talking</span> to it.
+    </h1>
+    <p class="hero-sub">
+      We design and build you a beautiful, custom site — then we install a private AI editor on your laptop so you can change anything, anytime, just by asking. You own the code, the domain, all of it. No platform. No lock-in. No monthly fee unless you want one.
+    </p>
+    <div class="hero-ctas">
+      <a href="#book" class="btn btn-primary">Book a discovery call <span class="btn-arrow">→</span></a>
+      <a href="#how" class="btn btn-secondary">See how it works</a>
+    </div>
+    <div class="hero-meta">
+      <span><span class="check">✓</span> 10-day build</span>
+      <span><span class="check">✓</span> Own everything</span>
+      <span><span class="check">✓</span> No subscription</span>
+    </div>
+
+    <!-- Chat mockup -->
+    <div class="chat-demo">
+      <div class="chat-header">
+        <span class="chat-dot r"></span>
+        <span class="chat-dot y"></span>
+        <span class="chat-dot g"></span>
+        <span class="chat-header-label">your-site / claude</span>
+      </div>
+      <div class="chat-msg you">
+        <span class="who">You</span>
+        <span class="text">Change the headline to "Now booking Q3 retreats" and swap the hero photo for the new one in my Downloads folder.</span>
+      </div>
+      <div class="chat-msg ai">
+        <span class="who">Claude</span>
+        <span class="text">Done. Updated the headline and replaced the hero image. Pushed to your site — it'll be live in about 30 seconds.</span>
+        <span class="action">→ Deployed to your-domain.com</span>
+      </div>
+    </div>
+  </div>
+</header>
+
+<!-- PROBLEM -->
+<section class="problem">
+  <div class="container">
+    <div class="section-head">
+      <span class="eyebrow">The problem with your website right now</span>
+      <h2>You don't own it. You rent it. And it shows.</h2>
+    </div>
+    <div class="problem-grid">
+      <div class="problem-card">
+        <span class="icon">i.</span>
+        <h3>Squarespace keeps charging you forever</h3>
+        <p>You pay $20–$50/month to live inside a template you've outgrown. The minute you stop paying, your site vanishes.</p>
+      </div>
+      <div class="problem-card">
+        <span class="icon">ii.</span>
+        <h3>Your designer is too expensive for small changes</h3>
+        <p>A new offer launches, you need to update the homepage, and suddenly you're emailing someone for a $400 invoice and a two-week turnaround.</p>
+      </div>
+      <div class="problem-card">
+        <span class="icon">iii.</span>
+        <h3>Wix's "AI builder" is still Wix</h3>
+        <p>You can talk to their AI, but everything you build lives on their platform. Try to move it elsewhere — you can't.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- PILLARS / WHAT YOU GET -->
+<section>
+  <div class="container">
+    <div class="section-head">
+      <span class="eyebrow">A different approach</span>
+      <h2>A custom site, an AI you can talk to, and full ownership — all in one handoff.</h2>
+      <p>Most "AI website" tools lock you into their platform forever. We do the opposite: we build it, hand you the keys, and teach the AI to live on your laptop.</p>
+    </div>
+    <div class="pillars-grid">
+      <div class="pillar">
+        <span class="pillar-num">i. Designed for you</span>
+        <h3>A custom site, not a template you fight</h3>
+        <p>We start with a 30-minute call about your work, your audience, and how you want to feel about your homepage. Then we design something that actually looks like you — not a Squarespace preset everyone has seen.</p>
+      </div>
+      <div class="pillar feature">
+        <span class="pillar-num">ii. Edit by chatting</span>
+        <h3>"Make the headline louder and add a testimonial"</h3>
+        <p>We install Claude on your laptop and connect it to your site. From then on, every edit is a conversation. No drag-and-drop. No CMS. No "where do I click to change this." Just ask.</p>
+      </div>
+      <div class="pillar feature">
+        <span class="pillar-num">iii. Yours forever</span>
+        <h3>The code, the domain, the hosting — all in your name</h3>
+        <p>Your site lives in your GitHub. It's hosted on your Vercel account (free tier for most sites). The domain is registered to you. If you ever want to leave us, there's nothing to take with you — it's already yours.</p>
+      </div>
+      <div class="pillar">
+        <span class="pillar-num">iv. Hands-free if you want it</span>
+        <h3>Or just text us — we'll handle the edits</h3>
+        <p>Some clients love talking to the AI. Others want us to do it for them. Our optional retainer means you can text us a change and have it live the same day. Cancel anytime.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- HOW IT WORKS -->
+<section id="how" style="background: var(--paper-warm);">
+  <div class="container">
+    <div class="section-head">
+      <span class="eyebrow">The process</span>
+      <h2>From first call to live site in 10 days.</h2>
+      <p>No drawn-out agency timelines. No mystery. Here's exactly what happens.</p>
+    </div>
+    <div class="timeline">
+      <div class="step">
+        <div class="step-dot">1</div>
+        <div>
+          <span class="day">Day 1 — Discovery</span>
+          <h3>A 30-minute call + a short intake form</h3>
+          <p>We get clear on what your site needs to do, who's coming to it, what to leave off, and what tone to strike. You send us your logo (or we sketch one), your copy (or we draft it), and any photos.</p>
+        </div>
+      </div>
+      <div class="step">
+        <div class="step-dot">2</div>
+        <div>
+          <span class="day">Days 2–4 — Design</span>
+          <h3>You see the site as a visual mockup first</h3>
+          <p>Before we write a line of code, you approve how it'll look. One round of revisions included.</p>
+        </div>
+      </div>
+      <div class="step">
+        <div class="step-dot">3</div>
+        <div>
+          <span class="day">Days 5–7 — Build</span>
+          <h3>We build it, in your GitHub account</h3>
+          <p>We use Claude to build a fast, modern site. It lives in a repo you own from day one.</p>
+        </div>
+      </div>
+      <div class="step">
+        <div class="step-dot">4</div>
+        <div>
+          <span class="day">Day 8 — Setup on your laptop</span>
+          <h3>We install your private AI editor</h3>
+          <p>Over a screenshare, we install Claude on your machine, connect it to your site, register your domain, and put everything in your Vercel account. You watch it happen.</p>
+        </div>
+      </div>
+      <div class="step">
+        <div class="step-dot">5</div>
+        <div>
+          <span class="day">Day 9 — Training</span>
+          <h3>One hour together — you make three real edits</h3>
+          <p>We walk through it side-by-side: change a headline, swap a photo, add a new section. By the end of the hour, you'll feel it click.</p>
+        </div>
+      </div>
+      <div class="step">
+        <div class="step-dot">6</div>
+        <div>
+          <span class="day">Day 10 — Launch</span>
+          <h3>Site goes live. 30 days of support included.</h3>
+          <p>For the first month, every "did I break it?" question is on us. After that, you can either keep editing yourself for free — or pick up the optional retainer.</p>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- COMPARISON -->
+<section class="compare">
+  <div class="container">
+    <div class="section-head">
+      <span class="eyebrow">How we compare</span>
+      <h2>The honest version of the table.</h2>
+    </div>
+    <div class="compare-table">
+      <div class="compare-row head">
+        <div class="compare-cell label">&nbsp;</div>
+        <div class="compare-cell ours">yourbrand</div>
+        <div class="compare-cell">Squarespace / Wix</div>
+        <div class="compare-cell">Hire a freelancer</div>
+      </div>
+      <div class="compare-row">
+        <div class="compare-cell label">You own the code</div>
+        <div class="compare-cell" data-col="yourbrand"><span class="yes">Yes</span></div>
+        <div class="compare-cell" data-col="Squarespace / Wix"><span class="no">No</span></div>
+        <div class="compare-cell" data-col="Freelancer"><span class="meh">Maybe</span></div>
+      </div>
+      <div class="compare-row">
+        <div class="compare-cell label">Edit by talking to AI</div>
+        <div class="compare-cell" data-col="yourbrand"><span class="yes">Yes — on your laptop</span></div>
+        <div class="compare-cell" data-col="Squarespace / Wix"><span class="meh">Only inside their app</span></div>
+        <div class="compare-cell" data-col="Freelancer"><span class="no">No</span></div>
+      </div>
+      <div class="compare-row">
+        <div class="compare-cell label">Monthly platform fee</div>
+        <div class="compare-cell" data-col="yourbrand"><span class="yes">None required</span></div>
+        <div class="compare-cell" data-col="Squarespace / Wix"><span class="no">$20–$50+/mo forever</span></div>
+        <div class="compare-cell" data-col="Freelancer"><span class="yes">None</span></div>
+      </div>
+      <div class="compare-row">
+        <div class="compare-cell label">Cost per small change</div>
+        <div class="compare-cell" data-col="yourbrand"><span class="yes">Free — you ask the AI</span></div>
+        <div class="compare-cell" data-col="Squarespace / Wix"><span class="meh">Your time + frustration</span></div>
+        <div class="compare-cell" data-col="Freelancer"><span class="no">$100–$400 / change</span></div>
+      </div>
+      <div class="compare-row">
+        <div class="compare-cell label">Can leave us anytime</div>
+        <div class="compare-cell" data-col="yourbrand"><span class="yes">Yes — it's all yours</span></div>
+        <div class="compare-cell" data-col="Squarespace / Wix"><span class="no">Site disappears</span></div>
+        <div class="compare-cell" data-col="Freelancer"><span class="meh">Depends</span></div>
+      </div>
+      <div class="compare-row">
+        <div class="compare-cell label">Time to live</div>
+        <div class="compare-cell" data-col="yourbrand"><span class="yes">10 days</span></div>
+        <div class="compare-cell" data-col="Squarespace / Wix"><span class="meh">Days–weeks (DIY)</span></div>
+        <div class="compare-cell" data-col="Freelancer"><span class="no">4–8 weeks</span></div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- PRICING -->
+<section id="pricing">
+  <div class="container">
+    <div class="section-head">
+      <span class="eyebrow">Pricing</span>
+      <h2>One fair price. Pay once. Own forever.</h2>
+      <p>No subscription required. If you want us to handle edits for you later, our retainer is optional — and you can cancel it any month.</p>
+    </div>
+    <div class="pricing-grid">
+      <div class="price-card featured">
+        <span class="badge">The build</span>
+        <span class="price-tag">One-time</span>
+        <h3>Custom site + AI setup</h3>
+        <div class="price-amount">$2,497<small> one-time</small></div>
+        <p class="price-note">Most clients are live in 10 days.</p>
+        <ul>
+          <li>Custom design (mockup approval before code)</li>
+          <li>Up to 6 pages built and copy-polished</li>
+          <li>Claude installed and configured on your laptop</li>
+          <li>GitHub repo + Vercel hosting in your accounts</li>
+          <li>Domain registration handled for you</li>
+          <li>1-hour live training session</li>
+          <li>30 days of "did I break it" email support</li>
+          <li>You own everything, forever</li>
+        </ul>
+        <a href="#book" class="btn btn-primary">Book a discovery call →</a>
+      </div>
+      <div class="price-card">
+        <span class="price-tag">Optional · cancel anytime</span>
+        <h3>Hands-free retainer</h3>
+        <div class="price-amount">$149<small>/month</small></div>
+        <p class="price-note">For when you'd rather not talk to the AI yourself.</p>
+        <ul>
+          <li>Up to 6 edit requests per month</li>
+          <li>Same-day turnaround on small changes</li>
+          <li>Slack / text channel directly to us</li>
+          <li>Quarterly performance + SEO check-in</li>
+          <li>First two months free with any build</li>
+          <li>Cancel any month — your site keeps working</li>
+        </ul>
+        <a href="#book" class="btn btn-secondary">Add at launch →</a>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- FAQ -->
+<section style="background: var(--paper-warm);">
+  <div class="container">
+    <div class="section-head">
+      <span class="eyebrow">Questions you're probably about to ask</span>
+      <h2>Honest answers.</h2>
+    </div>
+    <div class="faq">
+      <details open>
+        <summary>I'm not technical at all. Can I actually do this?</summary>
+        <p>Yes — that's the entire point. The "technical" part (installing the AI, connecting GitHub, setting up hosting and your domain) is our job. You watch us do it once. After that, you only ever do one thing: open a window on your laptop and type what you want changed. If you can write an email, you can edit your site.</p>
+      </details>
+      <details>
+        <summary>What does "you own everything" actually mean?</summary>
+        <p>Your code lives in a GitHub repo in your name. Your site is hosted on a Vercel account in your name. Your domain is registered to you with your billing details. We never gate access to any of it. If you decided tomorrow that you never wanted to work with us again, your site keeps working, you keep editing, and there's nothing for us to "take back."</p>
+      </details>
+      <details>
+        <summary>What happens if the AI breaks something?</summary>
+        <p>For the first 30 days, just email us — we'll fix it free. After that, you have two options: pick up the retainer and we handle it, or pay us an hourly rescue rate (currently $120/hr) for the rare big oops. In practice, the AI is very cautious about destructive changes, and your site is automatically backed up every time it deploys, so "rolling back" is usually a one-line ask.</p>
+      </details>
+      <details>
+        <summary>Are there any ongoing costs you don't mention?</summary>
+        <p>Two real ones, both paid directly to the providers (not to us): your domain (~$15/year) and, if your site gets unusually heavy traffic, Vercel hosting (free for the vast majority of solopreneur sites). Most clients pay $15 a year and that's it.</p>
+      </details>
+      <details>
+        <summary>Why not just use Squarespace or Wix?</summary>
+        <p>Two reasons. First: rental. You'll pay $300–$600 every year forever, and the day you stop paying, your site disappears. Second: ceiling. Templates look like templates. The minute you want something they don't offer, you're stuck. Our build is custom from the start, and the AI can change literally anything.</p>
+      </details>
+      <details>
+        <summary>What if I don't have copy or photos?</summary>
+        <p>We'll draft copy with you on the discovery call and refine it together. For photos: a mix of (a) your existing brand photos, (b) carefully chosen stock, and (c) AI-generated imagery if it fits your brand. We'll figure it out without making you spend a weekend writing your own About page.</p>
+      </details>
+      <details>
+        <summary>How is this different from Lovable, Bolt, or v0?</summary>
+        <p>Those tools are great for engineers and tinkerers — but they assume you know how to deploy, connect a domain, and wrangle a codebase when something goes sideways. We do all of that for you, and we set up the editor to live on your laptop with full context about your site. You don't have to learn a new app. You just talk.</p>
+      </details>
+      <details>
+        <summary>Can I add a blog / store / booking page later?</summary>
+        <p>Yes. Blogs and booking embeds are easy and usually free. Full e-commerce is doable but adds complexity — we'll quote it separately if and when you want it. The whole point of how we set you up is that adding things later is just a conversation.</p>
+      </details>
+    </div>
+  </div>
+</section>
+
+<!-- CTA -->
+<section class="cta-banner" id="book">
+  <div class="container cta-banner-inner">
+    <h2>Ready to <em>actually own</em> your website?</h2>
+    <p>Book a free 30-minute call. We'll talk about your work, your goals, and whether this is the right fit. No pressure either way.</p>
+    <a href="mailto:hello@yourbrand.com?subject=Discovery%20call" class="btn btn-primary">Book a discovery call <span class="btn-arrow">→</span></a>
+  </div>
+</section>
+
+<footer>
+  <div class="container footer-inner">
+    <span>© <span id="year">2026</span> [Your Brand] · Made with care.</span>
+    <span>hello@yourbrand.com · Built for solopreneurs and coaches.</span>
+  </div>
+</footer>
+
+<script>
+  document.getElementById('year').textContent = new Date().getFullYear();
+</script>
+
+</body>
+</html>
