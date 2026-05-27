@@ -3,6 +3,30 @@
 <head>
 <meta charset="UTF-8" />
 <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<script>
+(function () {
+  if (sessionStorage.getItem('sw_auth') === '1') return;
+  document.documentElement.style.visibility = 'hidden';
+  document.addEventListener('DOMContentLoaded', function () {
+    document.body.innerHTML = '<div id="sw-gate" style="position:fixed;inset:0;background:#FAF6EF;display:flex;align-items:center;justify-content:center;font-family:Inter,system-ui,sans-serif;z-index:99999;"><form id="sw-gate-form" style="display:flex;flex-direction:column;gap:14px;width:min(320px,86vw);"><label style="font-size:14px;color:#333;letter-spacing:0.02em;">Enter password</label><input id="sw-gate-input" type="password" autofocus style="padding:12px 14px;border:1px solid #ccc;border-radius:8px;font-size:16px;background:#fff;outline:none;" /><button type="submit" style="padding:12px 14px;border:0;border-radius:8px;background:#111;color:#fff;font-size:14px;cursor:pointer;letter-spacing:0.04em;">Continue</button><div id="sw-gate-err" style="font-size:13px;color:#b00020;min-height:18px;"></div></form></div>';
+    document.documentElement.style.visibility = '';
+    var form = document.getElementById('sw-gate-form');
+    var input = document.getElementById('sw-gate-input');
+    var err = document.getElementById('sw-gate-err');
+    form.addEventListener('submit', function (e) {
+      e.preventDefault();
+      if (input.value === 'thrive2026@full') {
+        sessionStorage.setItem('sw_auth', '1');
+        location.reload();
+      } else {
+        err.textContent = 'Incorrect password';
+        input.value = '';
+        input.focus();
+      }
+    });
+  });
+})();
+</script>
 <title>[YOUR BRAND] — A custom website you can edit by talking</title>
 <meta name="description" content="A custom-designed website you can change by talking to AI on your own laptop. You own the code, the domain, the hosting. No platform lock-in. No monthly fees." />
 
