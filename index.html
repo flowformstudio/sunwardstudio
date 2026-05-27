@@ -27,8 +27,8 @@
   });
 })();
 </script>
-<title>[YOUR BRAND] — A custom website you can edit by talking</title>
-<meta name="description" content="A custom-designed website you can change by talking to AI on your own laptop. You own the code, the domain, the hosting. No platform lock-in. No monthly fees." />
+<title>Sunward Studio — A website that grows when you talk to it</title>
+<meta name="description" content="Sunward Studio designs custom websites you can change by talking to AI on your own laptop. You own the code, the domain, the hosting. No platform lock-in. No monthly fees." />
 
 <link rel="preconnect" href="https://fonts.googleapis.com" />
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
@@ -99,12 +99,16 @@
     max-width: 1120px; margin: 0 auto;
   }
   .logo {
+    display: inline-flex; align-items: center; gap: 10px;
     font-family: 'Fraunces', serif;
     font-weight: 600;
-    font-size: 1.25rem;
+    font-size: 1.3rem;
     letter-spacing: -0.01em;
+    color: var(--ink);
+    line-height: 1;
   }
-  .logo span { color: var(--clay); }
+  .logo-mark { color: var(--clay); flex-shrink: 0; }
+  .logo-suffix { color: var(--clay); font-weight: 500; }
   .nav-links { display: flex; gap: 32px; align-items: center; }
   .nav-links a { font-size: 0.92rem; color: var(--ink-soft); transition: color 0.2s; }
   .nav-links a:hover { color: var(--ink); }
@@ -115,7 +119,10 @@
     transition: background 0.2s;
   }
   .nav-cta:hover { background: var(--clay) !important; }
-  @media (max-width: 720px) { .nav-links a:not(.nav-cta) { display: none; } }
+  @media (max-width: 720px) {
+    .nav-links a:not(.nav-cta) { display: none; }
+    .logo-suffix { display: none; }
+  }
 
   /* Buttons */
   .btn {
@@ -148,7 +155,7 @@
     position: absolute; inset: 0;
     background-image:
       radial-gradient(circle at 20% 20%, rgba(200,85,61,0.06), transparent 40%),
-      radial-gradient(circle at 80% 30%, rgba(217,164,65,0.05), transparent 50%);
+      radial-gradient(circle at 80% 30%, rgba(217,164,65,0.07), transparent 50%);
     pointer-events: none;
   }
   .hero-content { position: relative; z-index: 1; }
@@ -172,7 +179,7 @@
     background: url("data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 200 8' preserveAspectRatio='none'><path d='M0,5 Q50,0 100,4 T200,3' stroke='%23C8553D' stroke-width='2' fill='none' stroke-linecap='round'/></svg>") no-repeat center / 100% 100%;
   }
   .hero-sub {
-    font-size: 1.2rem; max-width: 620px; margin: 0 auto 40px;
+    font-size: 1.2rem; max-width: 640px; margin: 0 auto 40px;
     color: var(--ink-soft);
   }
   .hero-ctas { display: flex; gap: 14px; justify-content: center; flex-wrap: wrap; margin-bottom: 64px; }
@@ -435,8 +442,8 @@
     content: '';
     position: absolute; inset: 0;
     background:
-      radial-gradient(circle at 30% 50%, rgba(200,85,61,0.18), transparent 50%),
-      radial-gradient(circle at 70% 50%, rgba(217,164,65,0.12), transparent 50%);
+      radial-gradient(circle at 30% 60%, rgba(200,85,61,0.22), transparent 50%),
+      radial-gradient(circle at 70% 40%, rgba(217,164,65,0.16), transparent 50%);
     pointer-events: none;
   }
   .cta-banner-inner { position: relative; z-index: 1; }
@@ -456,13 +463,24 @@
     display: flex; justify-content: space-between; align-items: center;
     flex-wrap: wrap; gap: 16px;
   }
+  .footer-brand { display: inline-flex; align-items: center; gap: 8px; }
+  .footer-brand .logo-mark { color: var(--clay); }
 </style>
 </head>
 <body>
 
 <nav>
   <div class="nav-inner">
-    <a href="#" class="logo">your<span>brand</span></a>
+    <a href="#" class="logo" aria-label="Sunward Studio">
+      <svg class="logo-mark" viewBox="0 0 36 24" width="30" height="20" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+        <line x1="2" y1="20.5" x2="34" y2="20.5"/>
+        <path d="M 9 20.5 A 9 9 0 0 1 27 20.5"/>
+        <line x1="18" y1="5" x2="18" y2="8.5"/>
+        <line x1="7.5" y1="10" x2="9.7" y2="11.6"/>
+        <line x1="28.5" y1="10" x2="26.3" y2="11.6"/>
+      </svg>
+      <span>Sunward<span class="logo-suffix">.studio</span></span>
+    </a>
     <div class="nav-links">
       <a href="#how">How it works</a>
       <a href="#pricing">Pricing</a>
@@ -477,11 +495,11 @@
   <div class="container hero-content">
     <div class="hero-badge"><span class="dot"></span> Now taking 4 client builds for June</div>
     <h1>
-      A website you can change<br/>
-      by <span class="underline-art">talking</span> to it.
+      Talk to your website.<br/>
+      Watch it <span class="underline-art">grow</span>.
     </h1>
     <p class="hero-sub">
-      We design and build you a beautiful, custom site — then we install a private AI editor on your laptop so you can change anything, anytime, just by asking. You own the code, the domain, all of it. No platform. No lock-in. No monthly fee unless you want one.
+      Sunward Studio designs and builds you a beautiful, custom website — then installs a private AI editor on your laptop so you can change anything, anytime, just by asking. You own the code, the domain, all of it. No platform. No lock-in. No monthly fee unless you want one.
     </p>
     <div class="hero-ctas">
       <a href="#book" class="btn btn-primary">Book a discovery call <span class="btn-arrow">→</span></a>
@@ -547,7 +565,7 @@
     <div class="section-head">
       <span class="eyebrow">A different approach</span>
       <h2>A custom site, an AI you can talk to, and full ownership — all in one handoff.</h2>
-      <p>Most "AI website" tools lock you into their platform forever. We do the opposite: we build it, hand you the keys, and teach the AI to live on your laptop.</p>
+      <p>Most "AI website" tools lock you into their platform forever. Sunward Studio does the opposite: we build it, hand you the keys, and teach the AI to live on your laptop.</p>
     </div>
     <div class="pillars-grid">
       <div class="pillar">
@@ -561,7 +579,7 @@
         <p>We install Claude on your laptop and connect it to your site. From then on, every edit is a conversation. No drag-and-drop. No CMS. No "where do I click to change this." Just ask.</p>
       </div>
       <div class="pillar feature">
-        <span class="pillar-num">iii. Yours forever</span>
+        <span class="pillar-num">iii. Yours to keep, yours to grow</span>
         <h3>The code, the domain, the hosting — all in your name</h3>
         <p>Your site lives in your GitHub. It's hosted on your Vercel account (free tier for most sites). The domain is registered to you. If you ever want to leave us, there's nothing to take with you — it's already yours.</p>
       </div>
@@ -645,43 +663,43 @@
     <div class="compare-table">
       <div class="compare-row head">
         <div class="compare-cell label">&nbsp;</div>
-        <div class="compare-cell ours">yourbrand</div>
+        <div class="compare-cell ours">Sunward</div>
         <div class="compare-cell">Squarespace / Wix</div>
         <div class="compare-cell">Hire a freelancer</div>
       </div>
       <div class="compare-row">
         <div class="compare-cell label">You own the code</div>
-        <div class="compare-cell" data-col="yourbrand"><span class="yes">Yes</span></div>
+        <div class="compare-cell" data-col="Sunward"><span class="yes">Yes</span></div>
         <div class="compare-cell" data-col="Squarespace / Wix"><span class="no">No</span></div>
         <div class="compare-cell" data-col="Freelancer"><span class="meh">Maybe</span></div>
       </div>
       <div class="compare-row">
         <div class="compare-cell label">Edit by talking to AI</div>
-        <div class="compare-cell" data-col="yourbrand"><span class="yes">Yes — on your laptop</span></div>
+        <div class="compare-cell" data-col="Sunward"><span class="yes">Yes — on your laptop</span></div>
         <div class="compare-cell" data-col="Squarespace / Wix"><span class="meh">Only inside their app</span></div>
         <div class="compare-cell" data-col="Freelancer"><span class="no">No</span></div>
       </div>
       <div class="compare-row">
         <div class="compare-cell label">Monthly platform fee</div>
-        <div class="compare-cell" data-col="yourbrand"><span class="yes">None required</span></div>
+        <div class="compare-cell" data-col="Sunward"><span class="yes">None required</span></div>
         <div class="compare-cell" data-col="Squarespace / Wix"><span class="no">$20–$50+/mo forever</span></div>
         <div class="compare-cell" data-col="Freelancer"><span class="yes">None</span></div>
       </div>
       <div class="compare-row">
         <div class="compare-cell label">Cost per small change</div>
-        <div class="compare-cell" data-col="yourbrand"><span class="yes">Free — you ask the AI</span></div>
+        <div class="compare-cell" data-col="Sunward"><span class="yes">Free — you ask the AI</span></div>
         <div class="compare-cell" data-col="Squarespace / Wix"><span class="meh">Your time + frustration</span></div>
         <div class="compare-cell" data-col="Freelancer"><span class="no">$100–$400 / change</span></div>
       </div>
       <div class="compare-row">
         <div class="compare-cell label">Can leave us anytime</div>
-        <div class="compare-cell" data-col="yourbrand"><span class="yes">Yes — it's all yours</span></div>
+        <div class="compare-cell" data-col="Sunward"><span class="yes">Yes — it's all yours</span></div>
         <div class="compare-cell" data-col="Squarespace / Wix"><span class="no">Site disappears</span></div>
         <div class="compare-cell" data-col="Freelancer"><span class="meh">Depends</span></div>
       </div>
       <div class="compare-row">
         <div class="compare-cell label">Time to live</div>
-        <div class="compare-cell" data-col="yourbrand"><span class="yes">10 days</span></div>
+        <div class="compare-cell" data-col="Sunward"><span class="yes">10 days</span></div>
         <div class="compare-cell" data-col="Squarespace / Wix"><span class="meh">Days–weeks (DIY)</span></div>
         <div class="compare-cell" data-col="Freelancer"><span class="no">4–8 weeks</span></div>
       </div>
@@ -782,16 +800,25 @@
 <!-- CTA -->
 <section class="cta-banner" id="book">
   <div class="container cta-banner-inner">
-    <h2>Ready to <em>actually own</em> your website?</h2>
-    <p>Book a free 30-minute call. We'll talk about your work, your goals, and whether this is the right fit. No pressure either way.</p>
-    <a href="mailto:hello@yourbrand.com?subject=Discovery%20call" class="btn btn-primary">Book a discovery call <span class="btn-arrow">→</span></a>
+    <h2>Ready to own a website that <em>grows</em> with you?</h2>
+    <p>Book a free 30-minute call. We'll talk about your work, your goals, and whether Sunward Studio is the right fit. No pressure either way.</p>
+    <a href="mailto:hello@sunward.studio?subject=Discovery%20call" class="btn btn-primary">Book a discovery call <span class="btn-arrow">→</span></a>
   </div>
 </section>
 
 <footer>
   <div class="container footer-inner">
-    <span>© <span id="year">2026</span> [Your Brand] · Made with care.</span>
-    <span>hello@yourbrand.com · Built for solopreneurs and coaches.</span>
+    <span class="footer-brand">
+      <svg class="logo-mark" viewBox="0 0 36 24" width="22" height="16" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+        <line x1="2" y1="20.5" x2="34" y2="20.5"/>
+        <path d="M 9 20.5 A 9 9 0 0 1 27 20.5"/>
+        <line x1="18" y1="5" x2="18" y2="8.5"/>
+        <line x1="7.5" y1="10" x2="9.7" y2="11.6"/>
+        <line x1="28.5" y1="10" x2="26.3" y2="11.6"/>
+      </svg>
+      © <span id="year">2026</span> Sunward Studio · Websites that grow with you.
+    </span>
+    <span>hello@sunward.studio</span>
   </div>
 </footer>
 
